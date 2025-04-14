@@ -1,0 +1,11 @@
+# Ignore build outputs and system files
+build/
+*.zkey
+*.ptau
+*.wtns
+*.r1cs
+*.wasm
+*.sym
+node_modules/
+.vercel/
+.env
