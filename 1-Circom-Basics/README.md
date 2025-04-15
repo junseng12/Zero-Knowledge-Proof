@@ -39,13 +39,15 @@
 ```mermaid
 flowchart TD
 A[Write WithdrawProof.circom] --> B[Compile Circom (.r1cs, .wasm)]
-B --> C[Generate or download ptau] C --> D[Create zkey initial file (0000.zkey)]
+B --> C[Generate or download ptau]
+C --> D[Create zkey initial file (0000.zkey)]
 D --> E[Contribute prover (final.zkey)]
 E --> F[Create Solidity Verifier (verifier.sol)]
 F --> G[Write input (withdraw_input.json)]
 G --> H[Create Witness]
 H --> I[Create Proof (proof.json, public.json)]
 I --> J[Send proof to Verifier and verify]
+
 ```
 
 ---
