@@ -21,7 +21,7 @@
 
 ---
 
-## 📄 `Debug.md` – SumN 디버깅 기록
+## 📄 SumN 디버깅 기록
 
 ```markdown
 # 🐞 SumN.circom Debug Log

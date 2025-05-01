@@ -21,7 +21,7 @@
 
 ---
 
-## 📄 `Debug.md` – MaxN 디버깅 기록
+## 📄 MaxN 디버깅 기록
 
 ```markdown
 # 🐞 MaxN.circom Debug Log

@@ -1,9 +1,23 @@
-Input: n개의 숫자 + 기준값(threshold)
+pragma circom 2.0.0;
 
-Output: 합계가 기준값보다 크거나 같은지 여부(1/0)
+include "./SumN.circom";
+include "../../../circom/circomlib/circuits/comparators.circom";  // 비교기 포함
 
-구현 포인트:
+template SumAndCompare(n, threshold) {
 
-Sum 컴포넌트를 불러와서 합계 계산
+  signal input in[n]; // 배열 입력
+  signal output isValid; // 합 ≤ threshold → 1, 아니면 0
 
-합계와 기준값 비교 (LessThan 사용)
+  component summer = SumN(n);
+  for (var i = 0; i < n; i++){
+    summer.in[i] <== in[i];
+  }
+
+  component checker = LessThan(32);
+  checker.in[0] <== summer.out;
+  checker.in[1] <== threshold;
+
+  isValid <== checker.out;
+}
+
+component main = SumAndCompare(5, 50);
