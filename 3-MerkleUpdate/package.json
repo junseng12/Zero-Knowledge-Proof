@@ -1,0 +1,16 @@
+{
+  "name": "3-merkleupdate",
+  "version": "1.0.0",
+  "description": "## 🎯 실습 목표",
+  "main": "CalculateHash.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "circomlibjs": "^0.1.7",
+    "ffjavascript": "^0.3.1"
+  }
+}
