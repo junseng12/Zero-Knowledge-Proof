@@ -15,7 +15,7 @@
 
 ## ✅ 시도 2 – Poseidon 해시 직접 계산 후 대입
 
-- `oldLeaf = 42`, `newLeaf = 42`
+- `oldLeaf = 15`, `newLeaf = 42`
 - JS에서 Poseidon 해시 계산을 통해 정확한 루트 도출
 - 입력값에 계산된 루트를 넣음
 - 결과: public = [ "1" ] → 증명 성공

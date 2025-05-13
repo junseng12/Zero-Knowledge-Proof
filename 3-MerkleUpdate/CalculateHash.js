@@ -4,7 +4,7 @@ import { Scalar } from "ffjavascript";
 const poseidon = await buildPoseidon();
 
 // Step 0: leaf + path
-let leaf = Scalar.e(42);
+let leaf = Scalar.e(15);
 let pathIndices = [0, 1, 0];
 let pathElements = [
   Scalar.e("1000000000000000000000000000000000000000"),
