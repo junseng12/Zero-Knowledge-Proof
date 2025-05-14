@@ -1,3 +1,0 @@
-[submodule "2-Circom-WithdrawLimit/2-Circom-WithdrawLimit/circomlib"]
-	path = 2-Circom-WithdrawLimit/2-Circom-WithdrawLimit/circomlib
-	url = https://github.com/iden3/circomlib.git

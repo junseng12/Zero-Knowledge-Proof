@@ -1,6 +1,6 @@
 pragma circom 2.0.0;
 
-include "../circomlib/circuits/comparators.circom";
+include "../../circom/circomlib/circuits/comparators.circom";
 
 template WithdrawLimit() {
     signal input balance_before;
