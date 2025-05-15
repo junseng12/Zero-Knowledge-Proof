@@ -1,0 +1,23 @@
+{
+  "name": "4-zkdidverify",
+  "version": "1.0.0",
+  "description": "## 🎯 목표",
+  "main": "hardhat.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:debug": "node --inspect-brk ./node_modules/.bin/hardhat test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.24.0"
+  },
+  "dependencies": {
+    "circomlib": "^2.0.5"
+  }
+}

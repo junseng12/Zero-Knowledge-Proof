@@ -1,22 +1,42 @@
-# 🐞 ZK-DID 회로 실습 DEBUG LOG
+# 🔍 ZKDIDVerifier Solidity Integration DEBUG Report
 
-## 🧪 시도
+## 📁 프로젝트: 4-ZKDIDVerify
 
-- input: userId = "user777"
-- 실제 input 값 : 이들을 임의의 해시값으로 표현하여 입력함.
-- 허용된 리스트: 포함됨 → 인증 성공 예상
+## ✅ 시도한 것들
 
-## ⚙️ 흐름
+- Circom 2.0 회로 정상 설계 (ZKDIDVerify.circom)
+- Poseidon 해시 기반 userId 비교 → MultiOR → Boolean enforcement → `isAuthorized` 출력
+- `snarkjs` Groth16 pipeline 전부 실행 완료:
+  - `r1cs`, `zkey`, `proof.json`, `public.json`, `Verifier.sol` 전부 연동
+- Solidity Verifier와 Hardhat 배포 스크립트 완료
+- Hardhat에서 `verifyProof(a, b, c, input)` 수행
 
-1. Circom 회로 작성
-   - `IsEqual()` × 5, `MultiOR()` 조합 설계
-2. SHA256 기반 해시 사용 (Poseidon 대체)
-3. JS로 userIdHash, allowedHashlist 계산
-4. witness → proof → verify 순으로 실행
-5. public: `["1"]` → 검증 성공
+## ✅ 검증된 것
 
-## 🔍 주요 포인트
+| 항목                          | 결과                               |
+| ----------------------------- | ---------------------------------- |
+| `snarkjs groth16 verify`      | ✅ OK                              |
+| `proof.json` 포맷             | ✅ pi_b.slice(0, 2), BigInt 적용   |
+| `Verifier.sol` export         | ✅ zkey에서 직접 생성              |
+| `Hardhat clean/compile`       | ✅ 여러 차례 수행                  |
+| `input`, `a`, `b`, `c` typeof | ✅ 모두 `bigint`                   |
+| Hardhat 주소                  | ❌ 고정 (0x5FbDB... 유지됨)        |
+| Docker/WSL 실행               | ❌ 다른 실행 환경에서도 false 반복 |
 
-- Circom에서는 배열 연결 시 직접 반복문으로 연결 필요
-- signal 중복 할당 주의
-- `IsEqual(x, 0)` → `IsZero()` 역할 대체 가능
+## ❗ 문제점 요약
+
+- Solidity 상 `verifyProof(...)` 호출 시 false 반환
+- Hardhat local network가 바이트코드 동일 시 같은 주소에 컨트랙트 재사용하는 구조
+- WSL, Docker Ganache 환경에서도 동일한 false 발생
+- 모든 구성 요소가 일치했지만, Hardhat 또는 EVM 내부 pairing mismatch가 발생하는 미확인 상황
+
+## 🧹 정리 판단
+
+> Circom 회로 및 증명 시스템은 정상 작동함.  
+> 단, 현재 Hardhat+EVM 구조에서 pairing 검증 실패로 인해 `false` 발생하며,  
+> root cause는 `Verifier.sol`과 전달값의 ABI 수준 호환성 불일치일 수 있음.
+
+## 📁 참고 파일
+
+- `ZKDIDApp.test.js` → Hardhat 테스트 실패
+- `checkProof.js` → 직접 실행 테스트 실패
