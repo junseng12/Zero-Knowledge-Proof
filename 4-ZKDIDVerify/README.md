@@ -7,6 +7,24 @@ ZKDID 기반 회로 설계를 통해 **허용된 사용자 ID 목록**과의 일
 
 ---
 
+## 📂 파일 구조
+
+```bash
+4-ZKDIDVerify/
+├── contracts/
+│ ├── ZKDIDApp.sol # zkProof 인증 앱
+│ ├── Verifier.sol # zkey로부터 생성된 검증기
+├── proof/
+│ ├── fail.json # invalid proof
+│ ├── proof.json # valid proof
+│ ├── public.json # public input
+├── test/
+│ └── ZKDIDApp.test.js # valid/invalid proof 검증 테스트
+└── README.md / DEBUG.md
+```
+
+---
+
 ## 🏗️ 회로 구조 (ZKDIDVerify.circom)
 
 ### 입력
@@ -70,15 +88,8 @@ ZKDID 기반 회로 설계를 통해 **허용된 사용자 ID 목록**과의 일
 - `MultiOR.circom` – 다중 비교용 회로
 - `input.json` – 사용자 입력
 - `proof/proof.json` – 증명
+- `proof/fail.json` – 실패용 증명
 - `proof/public.json` – 공개 입력
 - `contracts/Verifier.sol` – Solidity 검증 컨트랙트
 - `test/ZKDIDApp.test.js` – Hardhat 테스트
 - `scripts/checkProof.js` – 개별 proof 검증 스크립트
-
----
-
-## 🧠 향후 계획
-
-- on-chain false 원인을 정확히 분석하기 위해 Foundry, Anvil 등 **대체 EVM 환경** 도입 검토
-- Verifier.sol ABI 타입 구조 비교 실험
-- pairing check 실패 예외 로깅 기능 추가 (Solidity 또는 JS layer)
