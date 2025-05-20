@@ -7,7 +7,7 @@ It is designed to deeply understand **privacy-preserving circuit design**, from 
 
 ## 🔐 What is Zero-Knowledge Proof (ZKP)?
 
-<img src="..\Images\Zero-Knowledge-Proof-Concept.PNG" width="600px" height="400px">
+<img src=".\Images\Zero-Knowledge-Proof-Concept.PNG" width="600px" height="400px">
 
 \*\*Zero-Knowledge Proof (ZKP)\*\* is a cryptographic technique that allows one party (the prover) to prove to the other party (the verifier) ​​that they know certain information without directly revealing that information.
 
