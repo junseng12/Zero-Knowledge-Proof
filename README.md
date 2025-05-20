@@ -1,122 +1,131 @@
-# 🔐 Zero-Knowledge Proof Practice Report
+# 🧬 Zero-Knowledge-Proof Circom Practice Suite
 
-## 📘 Overview: Purpose of this Practice
-
-The purpose of this project is to experience the entire process from ZKP circuit design to proof generation and Solidity integration through ZKP (Zero-Knowledge Proof) practice based on Circom and snarkjs.
-
-Through this, we will establish the foundation for practical design such as **ZKBridge, AKP, L2 Rollup, DID authentication structure design**.
+This repository contains systematic and practice-oriented learning records on **Circom and ZKP systems**.
+It is designed to deeply understand **privacy-preserving circuit design**, from arithmetic operations to Merkle trees, DID authentication, etc.
 
 ---
 
-## 🧠 Theoretical Background
+## 🔐 What is Zero-Knowledge Proof (ZKP)?
 
-### 1. Zero-Knowledge Proof (ZKP)
+<img src="..\Images\Zero-Knowledge-Proof-Concept.PNG" width="600px" height="400px">
 
-- **Prove to the other party that I satisfy a certain condition**, but hide the specific input of the condition. - Components:
-- Circuit: Formula expresses the condition to be proven
-- Input value: Separate public/private input
-- Witness: Circuit execution result
-- Proof: Mathematical proof created based on the data above
+\*\*Zero-Knowledge Proof (ZKP)\*\* is a cryptographic technique that allows one party (the prover) to prove to the other party (the verifier) ​​that they know certain information without directly revealing that information.
 
-### 2. L1 ↔ L2 structure
+### 🚩 ZKP Use-Cases
 
-- Layer 1 (L1): Main chain (ex. Ethereum)
-- Layer 2 (L2): External network that processes transactions faster and cheaper
-- **ZKP-based state proof** plays a key role when reflecting the state processed in L2 to L1
+- **ZK-DID**: Credential verification without revealing user identity
+- **ZK-Rollups**: Hide and verify transaction details on Layer-2 blockchains
+- **ZK-Bridge**: Protect sensitive asset ownership and cross-chain communication
 
-### 3. ZKBridge
+### ✨ Intuition Example:
 
-- Bridge structure that proves and propagates the state between different blockchains (L1-L2 or cross-chain)
-- Components:
-- State tree (Merkle Root)
-- ZKP circuit (Proof of validity of L2 state change)
-- Verifier (L1 smart contract)
+> "Without telling the secret door password,
+> you can open the door, come back, and convince the other party that you know the secret."
 
----
+### 🧱 Types of ZKPs
 
-## ✅ Key elements and analogies of the ZKP system
-
-| Element                 | Description                                                 | Analogy                                            |
-| ----------------------- | ----------------------------------------------------------- | -------------------------------------------------- |
-| `.circom`               | Writing proof conditions as a circuit                       | Exam question document                             |
-| `.r1cs`                 | Constraint system that mathematically expresses the circuit | Commentary on the mathematical formula of the exam |
-| `.wasm`                 | Machine code that can execute the circuit                   | Calculator (automatic solving)                     |
-| `.ptau`                 | Common security settings                                    | Security rules of the exam room                    |
-| `.zkey`                 | Circuit + proof system key made with ptau                   | Problem book + exam criteria                       |
-| `input.json`            | Input value definition (including public + private)         | Exam question answer sheet                         |
-| `witness.wtns`          | Circuit execution result                                    | Examinee's solution note                           |
-| `proof.json`            | Proof compressed in ZK method                               | Unforgeable exam pass certificate                  |
-| `public.json`           | Public input for verification                               | Public answer column                               |
-| `verification_key.json` | Verification key used by the verifier                       | Grading criteria                                   |
-| `verifier.sol`          | On-chain verification smart contract                        | Automatic scoring system                           |
+| Type             | Characteristics                                                  | Typical Use Cases          |
+| ---------------- | ---------------------------------------------------------------- | -------------------------- |
+| **zk-SNARKs**    | Efficient short proofs, requires trusted setup                   | zkSync, Aztec, Zcash, etc. |
+| **zk-STARKs**    | Transparent setup, post-quantum security, increased proof length | StarkWare-based systems    |
+| **Bulletproofs** | Short proof, no trusted setup required                           | Confidential Tx            |
 
 ---
 
-## 🔧 Commands and meanings used in practice
+## 🧠 Why This Repository?
 
-| Command                                                     | Description                       |
-| ----------------------------------------------------------- | --------------------------------- |
-| `circom WithdrawProof.circom --r1cs --wasm --sym -o build/` | Circuit compilation               |
-| `snarkjs powersoftau new bn128 14 pot14_0000.ptau`          | Initial ptau creation             |
-| `snarkjs powersoftau contribute ...`                        | Randomness contribution           |
-| `snarkjs powersoftau prepare phase2 ...`                    | Prepare ptau for the circuit      |
-| `snarkjs groth16 setup ...`                                 | Generate zkey with circuit + ptau |
-| `snarkjs zkey contribute ...`                               | Generate final proving key        |
-| `snarkjs zkey export solidityverifier ...`                  | Create smart contract verifier    |
-| `snarkjs wtns calculate ...`                                | Calculate witness                 |
-| `snarkjs groth16 prove ...`                                 | Create proof                      |
-| `snarkjs zkey export verificationkey ...`                   | Extract verification key          |
-| `snarkjs groth16 verify ...`                                | Verify proof                      |
+- Understanding the working principle of ZKP in real systems (ZK-DID, ZKBridge)
+- Building a reusable Circom circuit library applicable to practice
+- Connecting blockchain privacy research interests to practical circuit design
 
 ---
 
-## 🧩 Key points I asked again during practice
+## 🧭 Directory Structure
 
-- `.zkey` is a proof environment based on `.ptau` + `.r1cs`.
-- `witness` is the result of internal circuit calculations and is the material for generating proof.
-- `withdraw_input.json` contains both public and private values.
-- `public.json` contains only values ​​explicitly declared as `signal input public` in the circuit. - `verification_key` is extracted from `.zkey` to only verify the information needed for verification.
-
----
-
-## 🚀 Summary of the entire flow
-
-````text
-[1] Circuit design (.circom)
-[2] Circuit compilation → .r1cs, .wasm, .sym
-[3] ptau ceremony → randomness contribution
-[4] .zkey creation + contribution → proving key completion
-[5] Input value definition (withdraw_input.json)
-[6] Witness creation (circuit execution result)
-[7] Proof creation → proof.json, public.json
-[8] Verification key creation → verification_key.json
-[9] Verification execution → OK! ```
-
----
-
-## 🧭 Current steps
-
-- Circuit design ✅
-- Circuit compilation ✅
-- ptau → zkey generation ✅
-- Verifier generation ✅
-- Input configuration ✅
-- Witness calculation ✅
-- Proof generation ✅
-- Verification ✅
-
-✅ **Complete ZKP full flow**
+```bash
+Zero-Knowledge-Proof/
+├── 01-Circom-Basics/
+│ ├── Sum.circom, Max.circom, ...
+├── 01-Circom-Basics-Hardhat/
+│ └── Verifier.sol (Hardhat integration practice)
+├── 01-Circom-Practices/
+│ └── Intermediate circuits (SumAndCompare, ArrayEqual, etc.)
+├── 02-Circom-Withdraw-Limit/
+│ ├── WithdrawProof.circom, WithdrawLimit.circom, ...
+├── 03-MerkleProof/
+│ └── Merkle Inclusion Circuit
+├── 03-MerkleUpdate/
+│ └── Merkle Path Update Circuit
+├── 04-ZKDIDVerify/
+│ └── DID Authentication Circuit
+├── circom/ (Circom Source for Build)
+├── KR/
+│ └── README-KR.md
+├── README.md
+└── README-for-Developer.md
+```
 
 ---
 
-## 🧭 Future practice direction (planned)
+## 📂 Practice Flow and Structure
 
-- [ ] Verifier.sol → Hardhat linkage test
-- [ ] Merkle Tree-based ZKBridge circuit design
-- [ ] AKP: ZK authentication architecture design and circuit design
-- [ ] zk-DID circuit design
+| Step         | Folder                     | Summary                                                                |
+| ------------ | -------------------------- | ---------------------------------------------------------------------- |
+| 🔹 Step 1    | `01-Circom-*`              | Design basic arithmetic/comparison circuits (signal, comparator, etc.) |
+| 🔸 Step 2    | `02-Circom-Withdraw-Limit` | Condition-based circuits (LessThan, conditional control logic)         |
+| 🔷 Step 3    | `03-Merkle*`               | Merkle tree-based structure (Merkle proof, update)                     |
+| 🔐 Step 4    | `04-ZKDIDVerify`           | Design DID authentication circuits (Merkle + Hash logic)               |
+| ⚙️ Auxiliary | `circom/`                  | Circom source (for build and maintenance)                              |
 
 ---
 
-**Practical technology stack**: Circom, snarkjs, VSCode, Groth16 protocol
-````
+## 🔄 Standardized Folder Contents
+
+Each folder contains the following files:
+
+- `circuit.circom`: Circom circuit code
+- `input.json`: Example input
+- `proof.json`: Generated proof
+- `verifier.sol`: Solidity verification code (if needed)
+
+---
+
+## 🔬 Key Theoretical Highlights
+
+- **LessThan + IsEqual**: Conditional constraint (used in WithdrawLimit)
+- **MerkleProof**: Verifies whether hashed data is included in Merkle Root
+- **ArrayEqual + SumAndCompare**: Implements batch comparison logic
+
+---
+
+## 📚 Future Expansion (Research-Oriented Roadmap)
+
+### 1️⃣ **ZK-DID v2: Anonymous Access with Revocation**
+
+- **Anonymous Login**, **Selective Disclosure**, **Credential Revocation**
+- Long-term privacy protection and reputation management system
+
+### 2️⃣ **ZKBridge: Cross-Chain State Commitment**
+
+- **Off-chain Proof Generation**, **On-chain Verification**
+- Solving trust and delay issues in cross-chain data synchronization
+
+### 3️⃣ **Recursive zkRollup Circuit Simulator**
+
+- **Proof Aggregation**, **Recursive Proof Chaining**
+- Improving the scalability of Rollups using recursive proofs
+
+### 4️⃣ **ZK-SmartContract Auditor**
+
+- **Bytecode Analysis**, **Vulnerability Detection without Revealing Code**
+- Privacy-guaranteed on-chain security audit system for smart contracts
+
+### 5️⃣ **Privacy-Aware Reputation System**
+
+- **Threshold ZK-Proofs**, **Merkle Tree Dynamic Updates**
+- Maintaining privacy while managing user reputation System Build
+
+---
+
+📎 [한국어 문서 보기](./KR/README-KR.md)  
+📎 [실행 중심 문서 보기 (for developers)](./README-for-Developer.md)
