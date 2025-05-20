@@ -1,4 +1,4 @@
-## 📙 README-for-Developer.md 초안 구조
+## 📙 README-for-Developer
 
 ````markdown
 # 🛠️ Developer Guide: ZKP Practice Circom Projects
