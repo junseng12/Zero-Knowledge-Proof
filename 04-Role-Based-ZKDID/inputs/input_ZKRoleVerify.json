@@ -1,0 +1,8 @@
+{
+  "userAge": 25,
+  "userRole": 2,
+  "userCountry": 82,
+  "minAgeRequired": 18,
+  "requiredRole": [2, 3, 4],
+  "allowedCountries": [82, 1, 49, 44, 33]
+}

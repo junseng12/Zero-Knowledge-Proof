@@ -1,0 +1,116 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\JUNSEUNG\\OneDrive_아주대학교\\바탕 화면\\이준승_블록체인\\Zero-Knowledge-Proof\\04-Role-Based-ZKDID\\contracts\\Verifier.sol": {
+      "lastModificationDate": 1747815216327,
+      "contentHash": "38782e4847f28412ad15320611edede1",
+      "sourceName": "contracts/Verifier.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Verifier"
+      ]
+    },
+    "C:\\Users\\JUNSEUNG\\OneDrive_아주대학교\\바탕 화면\\이준승_블록체인\\Zero-Knowledge-Proof\\04-Role-Based-ZKDID\\contracts\\ZKRoleVerifyApp.sol": {
+      "lastModificationDate": 1747820985953,
+      "contentHash": "0a6723a6709c44247bd63e9c65ddd75d",
+      "sourceName": "contracts/ZKRoleVerifyApp.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "IVerifier",
+        "ZKRoleVerifyApp"
+      ]
+    },
+    "C:\\Users\\JUNSEUNG\\OneDrive_아주대학교\\바탕 화면\\이준승_블록체인\\Zero-Knowledge-Proof\\04-Role-Based-ZKDID\\node_modules\\hardhat\\console.sol": {
+      "lastModificationDate": 1747820038613,
+      "contentHash": "681c532e816169606d13a5fe8b475074",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
+      ]
+    }
+  }
+}
